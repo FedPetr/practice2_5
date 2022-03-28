@@ -55,3 +55,51 @@ int main()
 
 Задание 2:
 
+#include <bits/stdc++.h>
+
+#include <iostream>
+
+#include <windows.h>
+
+using namespace std;
+
+
+int find_terms(int arr[], int res, int k)
+{
+    unordered_map<int, int> m;
+
+    for (int i = 0; i < res; i++)
+        m[arr[i]]++;
+
+    int t_c = 0;
+
+    for (int i = 0; i < res; i++)
+    {
+        t_c += m[k-arr[i]];
+
+        if (k - arr[i] == arr[i])
+            t_c--;
+    }
+
+    return t_c/2;
+}
+
+int main()
+    {
+        SetConsoleOutputCP(CP_UTF8);
+        int n;
+        cout << "Размер массива:\n ";
+        cin >> n;
+        int arr[n];
+        cout << "Массив, через enter:\n";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    int k;
+    cout << "Требуемая сумма:\n ";
+    cin >> k;
+
+    int res = sizeof(arr)/sizeof(arr[0]);
+    cout << "Количество сумм: "<< find_terms(arr, res, k);
+    return 0;
+}
